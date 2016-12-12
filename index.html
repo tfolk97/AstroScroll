@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Scrolling Astronaut</title>
+
+	<style type="text/css">
+		#scrollBox{
+			background-color: grey;
+			height: 4600px;
+			width: 100%;
+			overflow: hidden;
+		}
+
+		#sky{
+			height: 700px;
+			width: 7500px;
+			background-image: url("images/scrollSite-08.png");
+			background-repeat: repeat-x;
+			position: relative;
+		}
+
+		#ground{
+			height: 700px;
+			width: 7500px;
+			background-image: url("images/scrollSite-01.png");
+			background-repeat: repeat-x;
+			position: relative;
+		}
+
+		#allCon{
+			height: 100vh;
+			width:100vw;
+			background-color: black;	
+			position: fixed;	
+			top: 0px;
+			left: 0px;
+		}
+
+		#astro{
+			height: 175px;
+			width: 120px;
+			background: url('images/scrollSite-02.png') no-repeat -61px -83px;
+			position: fixed;
+			top: 400px;
+			left: 200px;
+		}
+
+		#flag{
+			height: 140px;
+			width: 100px;
+			background: url('images/scrollSite-07.png') no-repeat -167px -164px;
+			position: fixed;
+			margin-top: -280px;
+			margin-left: 400px;
+		}
+
+		#rocket{
+			height: 350px;
+			width: 200px;
+			background: url('images/scrollSite-03.png') no-repeat -220px -811px;
+			position: fixed;
+			margin-top: 200px;
+			margin-left: 650px;
+		}
+
+		#alien{
+			height: 400px;
+			width: 250px;
+			background: url('images/scrollSite-04.png') no-repeat -137px -289px;
+			position: fixed;
+			margin-top: -300px;
+			margin-left: 2000px;
+		}
+
+		#planet1{
+			height: 200px;
+			width: 400px;
+			background: url('images/scrollSite-05.png') no-repeat -130px -64px;
+			position: fixed;
+		}
+
+		#planet2{
+			height: 200px;
+			width: 200px;
+			background: url('images/scrollSite-06.png') no-repeat -52px -54px;
+			position: fixed;
+			margin-left: 3500px;
+			margin-top: 50px;
+		}
+
+		#text1{
+			background: url('images/scrollSite-09.png') no-repeat -129px -207px;
+			width: 607px;
+			height: 665px;
+			position: fixed;
+			margin-left: 1200px;
+			margin-top: -725px;
+
+		}
+
+		#text2{
+			background: url('images/scrollSite-11.png') no-repeat -34px -46px;
+			width: 329px;
+			height: 454px;
+			position: fixed;
+			margin-left: 1900px;
+			margin-top: -775px;
+
+		}
+
+		#text3{
+			background: url('images/scrollSite-12.png') no-repeat -24px -43px;
+			width: 514px;
+			height: 811px;
+			position: fixed;
+			margin-left: 2500px;
+			margin-top: -850px;
+
+		}
+
+		#text4{
+			background: url('images/scrollSite-14.png') no-repeat -54px -33px;
+			width: 360px;
+			height: 303px;
+			position: fixed;
+			margin-left: 3900px;
+			margin-top: -525px;
+
+		}
+
+		#textRocket{
+			background: url('images/scrollSite-13.png') no-repeat -195px -218px;
+			width: 688px;
+			height: 597px;
+			position: fixed;
+			margin-left: 4300px;
+			margin-top: -660px;
+
+		}
+
+		#shootingStar{
+			background-image: url("images/scrollSite-15.png");
+			height: 100vh;
+			width: 100vw;
+			background-repeat: repeat-x;
+			position: fixed;
+			opacity: .5;
+
+	
+		}
+
+
+
+
+	</style>
+</head>
+<body id="main">
+	
+	<div id="scrollBox"></div>
+
+	<div id="allCon">
+		<div id="sky">
+		<div id="shootingStar"></div>
+			<div id="rocket"></div>
+			<div id="planet1"></div>
+			<div id="planet2"></div>
+			<div id="ground"></div>
+		</div>
+			<div id="flowers"></div>
+			<div id="text2"></div>
+			<div id="text4"></div>
+			<div id="textRocket"></div>
+			<div id="flag"></div>
+			<div id="astro"></div>
+			<div id="text1"></div>
+			<div id="text3"></div>
+			<div id="alien"></div>
+	</div>
+
+
+<script type="text/javascript"> 
+	
+	var	box = document.getElementById("scrollBox");
+	var	body = document.getElementById("main");
+	var sky = document.getElementById("sky");
+	var ground = document.getElementById("ground");
+	var astro = document.getElementById("astro");
+	var rocket = document.getElementById("rocket");
+	var planet1 = document.getElementById("planet1");
+	var planet2 = document.getElementById("planet2");
+	var flag = document.getElementById("flag");
+	var alien = document.getElementById("alien");
+	var one = document.getElementById("text1");
+	var two = document.getElementById("text2");
+	var three = document.getElementById("text3");
+	var four = document.getElementById("text4");
+	var tRock = document.getElementById("textRocket");
+	var total = document.getElementById("allCon");
+
+	var	animationCounter= 0;
+	var myTimer;
+	var stopTimer;
+	var characterAnimating = false;
+	var rocketAnimating = false;
+
+	document.addEventListener("scroll", getScrollPos);
+
+	function getScrollPos(){
+		sky.style.left = String(body.scrollTop * (-.3) ) + "px";
+		ground.style.left = String(body.scrollTop * (-1) ) + "px";
+		rocket.style.left = String(body.scrollTop * (-.8) ) + "px";
+		rocket.style.top = String(body.scrollTop * (-.1) ) + "px";
+		planet1.style.left = String(body.scrollTop * (-1) ) + "px";
+		planet2.style.left = String(body.scrollTop * (-1) ) + "px";
+		flag.style.left = String(body.scrollTop * (-1) ) + "px";
+		alien.style.left = String(body.scrollTop * (-1) ) + "px";
+		one.style.left = String(body.scrollTop * (-1) ) + "px";
+		two.style.left = String(body.scrollTop * (-1) ) + "px";
+		three.style.left = String(body.scrollTop * (-1) ) + "px";
+		four.style.left = String(body.scrollTop * (-1) ) + "px";
+		tRock.style.left = String(body.scrollTop * (-1) ) + "px";
+
+
+		console.log(body.scrollTop);
+
+		if(characterAnimating == false){
+			myTimer = setInterval(animateAstro, 150);
+			stopTimer = setTimeout(stopAnimation, 500);
+			characterAnimating =true;
+		}
+
+		// if(rocketAnimating == false){
+		// 	myTimer = setInterval(animateRocket, 150);
+		// 	stopTimer = setTimeout(stopAnimation, 500);
+		// 	rocketAnimating =true;
+		// }
+
+	}
+
+	function stopAnimation(){
+		clearTimeout(myTimer);
+		characterAnimating = false;
+		// rocketAnimating = false;
+	}
+
+
+
+	function animateAstro(){
+		animationCounter ++;
+
+		if( animationCounter ==1){
+			astro.style.background = "url('images/scrollSite-02.png') no-repeat -61px -83px";
+		} else if (animationCounter == 2 ){
+			astro.style.background = "url('images/scrollSite-02.png') no-repeat -211px -57px";
+
+		} else if (animationCounter == 3 ){
+			astro.style.background = "url('images/scrollSite-02.png') no-repeat -343px -86px";
+			animationCounter = 0;
+		}
+		}
+
+		var starTimer = setInterval(randomizeStar, 100);
+		var starCounter;
+		var	star = document.getElementById("shootingStar");
+
+	function randomizeStar(){
+		starCounter = Math.random() * 10;
+			if(starCounter == 9){
+				star.style.background = "url('images/scrollSite-15.png') no-repeat -169px -48px";
+				
+			} else if(starCounter == 8){
+				star.style.background = "url('images/scrollSite-15.png') no-repeat -825px -429px";
+			
+
+			}
+	}
+	// function animateRocket(){
+	// 	animationCounter ++;
+
+	// 	if( animationCounter ==1){
+	// 		rocket.style.background = "url('images/scrollSite-03.png') no-repeat -220px -811px;";
+	// 	} else if (animationCounter == 2 ){
+	// 		rocket.style.background = "url('images/scrollSite-03.png') no-repeat -208px -1270px;";
+
+	// 	} 
+	// 	}
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
